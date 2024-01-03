@@ -2,7 +2,7 @@ import express from "express";
 // const { MongoClient } = require("mongodb");
 import mongoose from "mongoose";
 import router from "./router.js";
-import Product from "./Product.js";
+import cors from "cors";
 
 const PORT = process.env.PORT || 5000;
 const DB_URL =
@@ -16,6 +16,7 @@ const DB_URL =
 const app = express();
 app.use(express.json());
 app.use("", router);
+app.use(cors());
 
 const start = async () => {
   try {
