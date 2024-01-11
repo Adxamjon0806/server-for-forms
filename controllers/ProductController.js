@@ -1,4 +1,4 @@
-import ProductService from "./ProductService.js";
+import ProductService from "../service/ProductService.js";
 
 class ProductController {
   async getAll(req, res) {

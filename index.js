@@ -3,6 +3,7 @@ import express from "express";
 import mongoose from "mongoose";
 import router from "./router.js";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 
 const PORT = process.env.PORT || 5000;
 const DB_URL =
@@ -15,6 +16,7 @@ const DB_URL =
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
 app.use(cors());
 app.use("", router);
 
