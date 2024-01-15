@@ -4,6 +4,10 @@ import mongoose from "mongoose";
 import router from "./router.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import dotenv from "dotenv";
+import errorMiddleware from "./middlewares/error-middleware.js";
+
+dotenv.config();
 
 const PORT = process.env.PORT || 5000;
 const DB_URL =
@@ -19,6 +23,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
 app.use("", router);
+app.use(errorMiddleware);
 
 const start = async () => {
   try {
