@@ -22,7 +22,7 @@ class MailService {
       html: `
       <div>
         <h1>For activation of your account please enter</h1>
-        <a href="https://snap-up-shop.vercel.app">${link}</a>
+        <a href="${link}">https://snap-up-shop.vercel.app</a>
       </div>
       `,
     });
