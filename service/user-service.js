@@ -21,7 +21,7 @@ class UserService {
     });
     await mailService.sendActivationMail(
       email,
-      `http://localhost:8000/activate/${activationLink}`
+      `https://sleepy-citadel-66676-f7bd094e4a58.herokuapp.com/activate/${activationLink}`
     );
     const userDto = new UserDto(user);
     const tokens = tokenService.generateTokens({ ...userDto });
