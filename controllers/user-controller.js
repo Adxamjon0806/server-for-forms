@@ -2,7 +2,6 @@ import userService from "../service/user-service.js";
 import dotenv from "dotenv";
 import { validationResult } from "express-validator";
 import ApiError from "../exceptions/api-error.js";
-import tokenService from "../service/token-service.js";
 dotenv.config();
 
 class UserController {
