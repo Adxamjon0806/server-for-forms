@@ -17,13 +17,12 @@ class MailService {
     await this.transporter.sendMail({
       from: "adxamjon0806@gmail.com",
       to,
-      subject:
-        "Activation of account in https://sleepy-citadel-66676-f7bd094e4a58.herokuapp.com",
+      subject: "Activation of account in Snap Up Shop",
       text: "",
       html: `
       <div>
         <h1>For activation of your account please enter</h1>
-        <a href="${link}">${link}</a>
+        <a href="https://snap-up-shop.vercel.app">${link}</a>
       </div>
       `,
     });
