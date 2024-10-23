@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
-import tokenModel from "../models/token-model.js";
 import dotenv from "dotenv";
+import usersConnection from "../database/ConnectDatabase.js";
 dotenv.config();
 
 class TokenService {
@@ -33,23 +33,45 @@ class TokenService {
     }
   }
   async saveToken(userId, refreshToken) {
-    const tokenData = await tokenModel.findOne({ user: userId });
+    const [[tokenData]] = await usersConnection.query(
+      `SELECT * FROM Tokens WHERE user_id = ${userId}`
+    );
+    // tokenModel.findOne({ user: userId });
+
     if (tokenData) {
-      tokenData.refreshToken = refreshToken;
-      return tokenData.save();
+      await usersConnection.query(
+        `UPDATE Tokens SET refreshToken = "${refreshToken}" WHERE user_id = ${userId}`
+      );
+      const [token] = await usersConnection.query(
+        `SELECT * FROM Tokens WHERE user_id = ${userId}`
+      );
+      return token;
     }
-    const token = await tokenModel.create({
-      user: userId,
-      refreshToken,
-    });
+    await usersConnection.query(
+      `INSERT INTO Tokens (user_id, refreshToken) VALUES (${userId}, "${refreshToken}")`
+    );
+    const token = await usersConnection.query(
+      `SELECT * FROM Tokens WHERE user_id = ${userId}`
+    );
     return token;
   }
   async removeToken(refreshToken) {
-    const tokenData = await tokenModel.findOneAndDelete({ refreshToken });
+    // const tokenData = await tokenModel.findOneAndDelete({ refreshToken });
+    const [[tokenData]] = await usersConnection.query(
+      `SELECT * FROM Tokens WHERE refreshToken = "${refreshToken}"`
+    );
+    console.log(tokenData);
+
+    await usersConnection.query(`
+      DELETE FROM Tokens WHERE refreshToken = "${refreshToken}"
+      `);
     return tokenData;
   }
   async findToken(refreshToken) {
-    const tokenData = await tokenModel.findOne({ refreshToken });
+    const [[tokenData]] = await usersConnection.query(
+      `SELECT * FROM Tokens WHERE refreshToken = "${refreshToken}"`
+    );
+    // const tokenData = await tokenModel.findOne({ refreshToken });
     return tokenData;
   }
 }

@@ -13,20 +13,20 @@ class MailService {
     });
   }
 
-  async sendActivationMail(to, link) {
-    await this.transporter.sendMail({
-      from: "adxamjon0806@gmail.com",
-      to,
-      subject: "Activation of account in Snap Up Shop",
-      text: "",
-      html: `
-      <div>
-        <h1>For activation of your account please enter</h1>
-        <a href="${link}">https://snap-up-shop.vercel.app</a>
-      </div>
-      `,
-    });
-  }
+  // async sendActivationMail(to, link) {
+  //   await this.transporter.sendMail({
+  //     from: "adxamjon0806@gmail.com",
+  //     to,
+  //     subject: "Activation of account in Snap Up Shop",
+  //     text: "",
+  //     html: `
+  //     <div>
+  //       <h1>For activation of your account please enter</h1>
+  //       <a href="${link}">https://snap-up-shop.vercel.app</a>
+  //     </div>
+  //     `,
+  //   });
+  // }
 }
 
 export default new MailService();
