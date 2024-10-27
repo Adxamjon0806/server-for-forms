@@ -6,10 +6,12 @@ dotenv.config();
 //localhost, root, A15162006b, users_database
 
 const usersConnection = await mysql.createConnection({
-  host: process.env.MYSQL_HOST,
-  user: process.env.MYSQL_USER,
-  password: process.env.MYSQL_PASSWORD,
-  database: process.env.MYSQL_DATABASE,
+  host: process.env.MYSQL_PUBLIC_URL,
+  port: 3306,
+  user: process.env.MYSQLUSER,
+  password: process.env.MYSQLPASSWORD,
+  database: process.env.MYSQLDATABASE,
+  connectTimeout: 10000,
 });
 
 export default usersConnection;
