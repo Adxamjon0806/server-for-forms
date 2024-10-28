@@ -16,7 +16,7 @@ app.use(cookieParser());
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:3000",
+    origin: "https://adkham-forms.vercel.app",
   })
 );
 app.use("", router);
