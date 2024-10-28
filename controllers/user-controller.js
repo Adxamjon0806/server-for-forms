@@ -17,7 +17,7 @@ class UserController {
       res.cookie("refreshToken", userData.refreshToken, {
         httpOnly: true,
         secure: true,
-        sameSite: "strict",
+        sameSite: "None",
         maxAge: 30 * 24 * 60 * 60 * 1000,
       });
       return res.json(userData);
@@ -33,7 +33,7 @@ class UserController {
       res.cookie("refreshToken", userData.refreshToken, {
         httpOnly: true,
         secure: true,
-        sameSite: "strict",
+        sameSite: "None",
         maxAge: 30 * 24 * 60 * 60 * 1000,
       });
       return res.json(userData);
@@ -50,7 +50,7 @@ class UserController {
       res.clearCookie("refreshToken", {
         httpOnly: true,
         secure: true,
-        sameSite: "strict",
+        sameSite: "None",
       });
       return res.json(token);
     } catch (e) {
@@ -65,7 +65,7 @@ class UserController {
       res.cookie("refreshToken", userData.refreshToken, {
         httpOnly: true,
         secure: true,
-        sameSite: "strict",
+        sameSite: "None",
         maxAge: 30 * 24 * 60 * 60 * 1000,
       });
       return res.json(userData);
